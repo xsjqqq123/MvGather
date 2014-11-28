@@ -2,6 +2,7 @@ MvGather
 ========
 
 <<<<<<< HEAD
+
 MvGather中文名影视集结号，是个在线视频客户端，同时也是本地视频播放器。
 基于Qt5.3及QtAV开发，同时使用QCFramer皮肤框架。
 主要用于解决ubuntu及其它linux发行版上网页观看视频占用大量CPU。
@@ -15,8 +16,9 @@ deb下载地址：http://mvgather.com/?content/read-10.html
 #### Requirements
 Qt:http://qt-project.org/downloads
 QtAV:https://github.com/wang-bin/QtAV
-QFramer:https://github.com/dragondjf/QFramer
+QFramer:https://github.com/dragondjf/QFramer(已包含进源码)
 
+QtAv的具体编译过程可参考：http://blog.csdn.net/iloveqt5/article/details/38128867
 
 **MvGather is free software licensed under the term of LGPL v2.1.你可以任意使用本源码，但不得在windows上传播，毕竟windows上官方都有相似客户端。
 

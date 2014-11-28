@@ -1,0 +1,318 @@
+/****************************************************************************
+**
+** Copyright (C) 2014 dragondjf
+**
+** QFramer is a frame based on Qt5.3, you will be more efficient with it. 
+** As an Qter, Qt give us a nice coding experience. With user interactive experience(UE) 
+** become more and more important in modern software, deveployers should consider business and UE.
+** So, QFramer is born. QFramer's goal is to be a mature solution 
+** which you only need to be focus on your business but UE for all Qters.
+**
+** Version	: 0.2.5.0
+** Author	: dragondjf
+** Website	: https://github.com/dragondjf
+** Project	: https://github.com/dragondjf/QCFramer
+** Blog		: http://my.oschina.net/dragondjf/home/?ft=atme
+** Wiki		: https://github.com/dragondjf/QCFramer/wiki
+** Lincence: LGPL V2
+** QQ: 465398889
+** Email: dragondjf@gmail.com, ding465398889@163.com, 465398889@qq.com
+** 
+****************************************************************************/
+
+#include "fmainwindow.h"
+#include "futil.h"
+#include <QtCore>
+
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QDesktopWidget>
+#include <QApplication>
+#include <QDebug>
+#include <QDir>
+
+
+FMainWindow::FMainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    //qDebug("mainwindow init");
+    initData();
+    initUI();
+    initConnect();
+}
+
+void FMainWindow::initData()
+{
+    leftbuttonpressed = false;
+    lockmoved = false;
+    locked = false;
+}
+
+void FMainWindow::initUI()
+{
+    titleBar = FTitleBar::getInstace();
+
+    setObjectName(QString("FMainWindow"));
+    QDesktopWidget* desktopWidget = QApplication::desktop();
+    setMaximumSize(desktopWidget->availableGeometry().size());
+    readSettings();
+
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+    //setWindowTitle("QFramer");
+
+    pstatusbar = new QStatusBar;
+    pstatusbar->setFixedHeight(25);
+    setStatusBar(pstatusbar);
+    trayicon = new QSystemTrayIcon(QIcon(QString(":/images/images/icon.png")), this);
+    trayicon->setObjectName(QString("trayicon"));
+    trayicon->setToolTip(QString(qApp->applicationName()));
+    trayicon->show();
+
+    //flyWidget = new FlyWidget(this);
+    //flyWidget->move(desktopWidget->availableGeometry().width() * 0.8, desktopWidget->availableGeometry().height() *0.2);
+}
+
+
+void FMainWindow::initConnect( )
+{
+    connect(titleBar, SIGNAL(minimuned()), this, SIGNAL(Hidden()));
+    //connect(titleBar, SIGNAL(closed()), this, SIGNAL(Hidden()));
+    connect(titleBar, SIGNAL(minimuned()), this, SLOT(hide()));
+    //connect(titleBar, SIGNAL(minimuned()), this, SLOT(showFlyWidget()));
+    connect(titleBar, SIGNAL(maximumed()), this, SLOT(swithMaxNormal()));
+    connect(titleBar, SIGNAL(closed()), this, SLOT(quitProcess()));
+    //connect(titleBar, SIGNAL(closed()), this, SLOT(showFlyWidget()));
+    connect(trayicon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this, SLOT(onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason)));
+}
+
+
+void FMainWindow::readSettings()
+{
+   QDesktopWidget* desktopWidget = QApplication::desktop();
+   int w = desktopWidget->availableGeometry().width();
+   int h = desktopWidget->availableGeometry().height();
+   QSettings settings("MvGather", "xusongjie");
+   resize(settings.value("FMainWindow/size", QSize(w * 0.6, h * 0.6)).toSize());
+   //qDebug()<<settings.value("FMainWindow/size");
+   //printf("%d\n" ,(settings.value("FMainWindow/size", QSize(w * 0.6, h * 0.6)).toSize().height()));
+   //printf("%d\n" ,(settings.value("FMainWindow/size", QSize(w * 0.6, h * 0.6)).toSize().width()));
+   move(settings.value("FMainWindow/pos", QPoint(w * 0.2, h * 0.1)).toPoint());
+}
+
+void FMainWindow::writeSettings()
+{
+    QSettings settings("MvGather", "xusongjie");
+    //qDebug(qPrintable(QDir::currentPath() + "/QFramer.ini"));
+    settings.setValue("FMainWindow/size", size());
+    settings.setValue("FMainWindow/pos", pos());
+}
+
+bool FMainWindow::isMoved()
+{
+    return lockmoved;
+}
+
+bool FMainWindow::isLocked()
+{
+    return locked;
+}
+
+void FMainWindow::quitProcess()
+{
+    animationClose();
+}
+
+void FMainWindow::setLockMoved(bool flag)
+{
+    lockmoved = flag;
+}
+
+void FMainWindow::setLocked(bool flag)
+{
+    locked = flag;
+}
+
+FTitleBar* FMainWindow::getTitleBar()
+{
+    return titleBar;
+}
+
+QStatusBar* FMainWindow::getStatusBar()
+{
+    return pstatusbar;
+}
+
+QSystemTrayIcon* FMainWindow::getQSystemTrayIcon()
+{
+    return trayicon;
+}
+
+FlyWidget* FMainWindow::getFlyWidget()
+{
+    return flyWidget;
+}
+
+void FMainWindow::swithMaxNormal()
+{
+    if(isMaximized())
+    {
+        showNormal();
+    }else{
+        showMaximized();
+    }
+}
+
+
+void FMainWindow::showFlyWidget()
+{
+    flyWidget->show();
+}
+
+void FMainWindow::mousePressEvent(QMouseEvent *e)
+{
+    if(e->button() & Qt::LeftButton)
+    {
+        if(e->y() < titleBar->height() and e->x() > titleBar->width() - 120)
+        {
+            leftbuttonpressed = false;
+        }
+        else
+        {
+            dragPosition = e->globalPos() - frameGeometry().topLeft();
+            leftbuttonpressed = true;
+        }
+    }
+    e->accept();
+}
+
+void FMainWindow::mouseDoubleClickEvent(QMouseEvent *e)
+{
+    if(e->y() < titleBar->height() and e->x() < titleBar->width() - 120)
+    {
+        swithMaxNormal();
+        e->accept();
+    }else{
+        e->ignore();
+    }
+}
+
+void FMainWindow::SetCursorStyle(enum_Direction direction)
+{
+    //设置上下左右以及右上、右下、左上、坐下的鼠标形状
+    switch(direction)
+    {
+    case eTop:
+    case eBottom:
+        setCursor(Qt::SizeVerCursor);
+        break;
+    case eRight:
+    case eLeft:
+        setCursor(Qt::SizeHorCursor);
+        break;
+    case eNormal:
+        setCursor(Qt::ArrowCursor);
+    default:
+        setCursor(Qt::ArrowCursor);
+        break;
+    }
+}
+
+void FMainWindow::mouseReleaseEvent(QMouseEvent *e)
+{
+    leftbuttonpressed = false;
+    titleBar->clearChecked();
+    e->accept();
+}
+
+void FMainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+    if(isMaximized())
+    {
+        e->ignore();
+    }
+    else
+    {
+
+        if(e->y() < titleBar->height() and e->x() > titleBar->width() - 120)
+        {
+            e->ignore();
+        }
+        else{
+            if(leftbuttonpressed)
+            {
+                if(getTitleBar()->getFixedflag())
+                {
+                    move(e->globalPos() - dragPosition);
+                }
+                e->accept();
+            }
+
+        }
+    }
+
+}
+
+//void FMainWindow::keyPressEvent(QKeyEvent *e)
+//{
+//    if(e->key() == Qt::Key_Escape){
+//        close();
+//    }
+//    else if (e->key() == Qt::Key_F11) {
+//        titleBar->getMaxButton()->click();
+//    }
+//}
+
+void FMainWindow::closeEvent(QCloseEvent *event)
+{
+    QMainWindow::closeEvent(event);
+}
+
+
+void FMainWindow::animationClose()
+{
+    writeSettings();
+    QPropertyAnimation *animation = new QPropertyAnimation(this, "windowOpacity");
+    connect(animation, SIGNAL(finished()), this, SLOT(close()));
+    animation->setDuration(500);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->start();
+}
+
+void FMainWindow::onSystemTrayIconClicked(QSystemTrayIcon::ActivationReason reason)
+{
+    switch(reason)
+        {
+        //单击
+        case QSystemTrayIcon::Trigger:
+            //双击
+        case QSystemTrayIcon::DoubleClick:
+            if(isHidden())
+            {
+                //恢复窗口显示
+                show();
+                //一下两句缺一均不能有效将窗口置顶
+                setWindowState(Qt::WindowActive);
+                activateWindow();
+                setLocked(locked);
+            }
+            else
+            {
+                if(not locked)
+                {
+                    hide();
+                }
+            }
+            break;
+        case QSystemTrayIcon::Context:
+            break;
+        default:
+            break;
+        }
+}
+
+FMainWindow::~FMainWindow()
+{
+    //printf("111111\n");
+}

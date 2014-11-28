@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/qss">
+        <file>skin/qss/template.qss</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/delete.png</file>
+        <file>images/download.ico</file>
+        <file>images/downloadManage.png</file>
+        <file>images/icon.png</file>
+        <file>images/list.png</file>
+        <file>images/load.jpg</file>
+        <file>images/magnet.png</file>
+        <file>images/player.png</file>
+        <file>images/share.png</file>
+        <file>images/tipBackgound.png</file>
+        <file>images/tipBusy.png</file>
+        <file>skin/images/appbar.black_down.png</file>
+        <file>skin/images/appbar.black_right.png</file>
+        <file>skin/images/bg.png</file>
+        <file>skin/images/downsolidarrow.png</file>
+        <file>skin/images/rightsolidarrow.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>skin/icons/dark/appbar.app.png</file>
+        <file>skin/icons/dark/appbar.close.png</file>
+        <file>skin/icons/dark/appbar.clothes.shirt.png</file>
+        <file>skin/icons/dark/appbar.control.down.png</file>
+        <file>skin/icons/dark/appbar.fullscreen.box.png</file>
+        <file>skin/icons/dark/appbar.lock.png</file>
+        <file>skin/icons/dark/appbar.minus.png</file>
+        <file>skin/icons/dark/appbar.page.delete.png</file>
+        <file>skin/icons/dark/appbar.cabinet.in.png</file>
+        <file>skin/icons/dark/appbar.debug.step.into.png</file>
+        <file>skin/icons/dark/appbar.link.png</file>
+        <file>skin/icons/dark/appbar.monitor.play.png</file>
+        <file>skin/icons/dark/appbar.share.open.png</file>
+    </qresource>
+</RCC>

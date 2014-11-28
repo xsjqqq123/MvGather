@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MagnetWidget</class>
+ <widget class="QWidget" name="MagnetWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>871</width>
+    <height>575</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0" rowspan="3">
+    <widget class="QFrame" name="frame_3">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1" colspan="6">
+       <widget class="QTableWidget" name="magnetSearchTbWidget">
+        <column>
+         <property name="text">
+          <string>文件名</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>详情</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>磁力链接</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLineEdit" name="searchLineEdit">
+        <property name="text">
+         <string>输入关键词</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>135</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>磁力链搜索:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QToolButton" name="searchBtn">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>搜索</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QFrame" name="frame_4">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1">
+       <widget class="QLabel" name="usrNameLbl">
+        <property name="text">
+         <string>未登录</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>网盘容量:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="panSizeLbl">
+        <property name="text">
+         <string>0/0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QToolButton" name="loginBtn">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>百度云登录</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="2" colspan="3">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>159</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>离线任务列表:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="5">
+       <widget class="QListWidget" name="downloadMagnetlistWidget"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QToolButton" name="newMagnet">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>新建磁力链任务</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QToolButton" name="clearTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>清空</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QToolButton" name="refreshTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>刷新</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="newUrlTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>普通链接任务</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>227</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QFrame" name="frame_2">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>百度云视频列表（双击下载）:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="4">
+       <widget class="QListWidget" name="panMovieListWidget"/>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>228</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="deleteFiles">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>清空所有文件</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QToolButton" name="refreshFilesList">
+        <property name="styleSheet">
+         <string notr="true">QToolButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>刷新</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

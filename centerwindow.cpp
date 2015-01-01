@@ -15,14 +15,13 @@
 #include <QDesktopWidget>
 #include <QClipboard>
 #include <QApplication>
-#include <QToolButton>
 #include <QFileDialog>
 #include <QCursor>
 
 CenterWindow::CenterWindow(QWidget *parent) :
     FCenterWindow(parent)
 {
-    this->version = "3.1.0";
+    this->version = "3.2.0";
     QDir dir;
     QDir dir2(dir.homePath()+"/视频");
     QDir dir3(dir.homePath()+"/Videos");
@@ -53,19 +52,19 @@ CenterWindow::CenterWindow(QWidget *parent) :
 
 
     playerWidget = new PlayerWidget(this);
-    addWidget(tr("播放器"), tr("Player"), playerWidget);
+    addWidget(tr(""), tr("Player"), playerWidget);//播放器
 
     browseWidget = new  BrowseWidget(this);
-    addWidget(tr("视频库"), tr("MvList"), browseWidget);
+    addWidget(tr(""), tr("MvList"), browseWidget);//视频库
 
     recommendWidget = new RecommendWidget(this);
-    addWidget(tr("推荐"), tr("MvRecomend"), recommendWidget);
+    addWidget(tr(""), tr("MvRecomend"), recommendWidget);//推荐
 
     magnetWidget = new MagnetWidget(this);
-    addWidget(tr("磁力链"), tr("Magnet"), magnetWidget);
+    addWidget(tr(""), tr("Magnet"), magnetWidget);//磁力链
 
     downloadManageWidget = new QScrollArea(this);
-    addWidget(tr("下载"), tr("Download"), downloadManageWidget);
+    addWidget(tr(""), tr("Download"), downloadManageWidget);//下载
 
     downloadManageScrollAreaWidget = new QWidget(downloadManageWidget);
     downloadManageWidget->setWidget(downloadManageScrollAreaWidget);
@@ -76,7 +75,7 @@ CenterWindow::CenterWindow(QWidget *parent) :
     downloadManageScrollAreaWidget->setStyleSheet("background:transparent");
 
     getNavgationBar()->setCurrentIndex(0);
-    setAlignment(TopCenter);
+    setAlignment(LeftTop);
 
     QSettings settings("MvGather", "xusongjie");
     QString preferQualitysSetting = settings.value("app/preferQualitys", "").toString();
@@ -102,6 +101,7 @@ CenterWindow::CenterWindow(QWidget *parent) :
     hideMouseTimer->start(500);
 
     loadDownloadSettings();
+    //setAlignment(LeftTop);
 }
 
 void CenterWindow::addMvToPlaylist(QString tvUrl)

@@ -14,7 +14,7 @@
 PlayerWin::PlayerWin(QWidget *parent) :
     QWidget(parent)
 {
-    setMinimumWidth(200);
+    setMinimumWidth(100);
     //setCursor(QCursor(Qt::UpArrowCursor));
     isFullScreen = false;
     state = 0;
@@ -71,6 +71,8 @@ PlayerWin::PlayerWin(QWidget *parent) :
     updateProgressBarT->start(500);
     manager = new QNetworkAccessManager(this);
     EndOfMediaMark=0;
+
+    setMouseTracking(true);
 
 }
 
@@ -202,6 +204,11 @@ void PlayerWin::paintEvent(QPaintEvent *)
 void PlayerWin::resizeEvent(QResizeEvent *event)
 {
     //qDebug()<<"resize"<<event->size()<<this->mapToGlobal(this->pos());
+}
+
+void PlayerWin::mouseMoveEvent(QMouseEvent *e)
+{
+    //qDebug()<<"mouse";
 }
 
 //void PlayerWin::keyReleaseEvent(QKeyEvent *e)
@@ -631,4 +638,3 @@ void PlayerWin::closeSub()
 {
     subFilter->setFile("");
 }
-

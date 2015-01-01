@@ -19,11 +19,11 @@ RecommendWidget::RecommendWidget(QWidget *parent) :
     setLayout(mainGLayout);
 
     listShowWidget = new ListShowWidget;
-    dyRecommendBtn = new QToolButton;
-    searchBtn = new QToolButton;
+    dyRecommendBtn = new QPushButton;
+    searchBtn = new QPushButton;
     searchLineEdit = new QLineEdit;
 
-    searchBtn->setStyleSheet("QToolButton{background-color: rgba(0, 82, 112, 100);color: white;border: 1px;}QToolButton:hover{background-color: rgba(0, 82, 112, 200);color: white;border: 1px;}QToolButton:disabled{background-color: transparent;color: gray;}");
+    searchBtn->setStyleSheet("QPushButton{background-color: rgba(0, 82, 112, 100);color: white;border: 1px;}QPushButton:hover{background-color: rgba(0, 82, 112, 200);color: white;border: 1px;}QPushButton:disabled{background-color: transparent;color: gray;}");
 
     mainGLayout->addWidget(listShowWidget,0,0,10,10);
     mainGLayout->addWidget(dyRecommendBtn,0,10,1,1);

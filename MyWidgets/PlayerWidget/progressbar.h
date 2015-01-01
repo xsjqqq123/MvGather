@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QTimer>
+#include <QMouseEvent>
+#include <QLabel>
 class ProgressBar : public QWidget
 {
     Q_OBJECT
@@ -10,8 +12,9 @@ public:
     explicit ProgressBar(QWidget *parent = 0);
     ~ProgressBar();
 protected:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *e);
     void mouseReleaseEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *e);
     void leaveEvent(QEvent * event);
     void enterEvent(QEvent * event);
 
@@ -28,6 +31,7 @@ private:
     QTimer *timer;
     int progressBarHeight;
     bool isMouseIn;
+    QPoint indicateLinePoint;
 };
 
 #endif // PROGRESSBAR_H

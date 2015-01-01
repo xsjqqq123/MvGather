@@ -27,8 +27,8 @@ void BrowseWidget::initUi()
     navPanelTWidget->setMaximumWidth(400);
     navPanelBWidget->setMaximumWidth(400);
 
-//    mainGLayout->setMargin(0);
-//    mainGLayout->setSpacing(2);
+    mainGLayout->setMargin(0);
+    mainGLayout->setSpacing(2);
 
     mainGLayout->addWidget(showWidget,0,0,10,10);
     mainGLayout->addWidget(navPanelTWidget,0,10,1,2);
@@ -41,26 +41,26 @@ void BrowseWidget::initUi()
     vmGLayout = new QGridLayout();
     tuiGLayout = new QGridLayout();
 
-    moGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-    tvGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-    ctGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-    vaGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-    vmGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-    tuiGLayout->setAlignment(Qt::AlignLeft|Qt::AlignTop);
+    moGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+    tvGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+    ctGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+    vaGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+    vmGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+    tuiGLayout->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
 
-    moGLayout->setMargin(0);
-    tvGLayout->setMargin(0);
-    ctGLayout->setMargin(0);
-    vaGLayout->setMargin(0);
-    vmGLayout->setMargin(0);
-    tuiGLayout->setMargin(0);
+    moGLayout->setMargin(2);
+    tvGLayout->setMargin(2);
+    ctGLayout->setMargin(2);
+    vaGLayout->setMargin(2);
+    vmGLayout->setMargin(2);
+    tuiGLayout->setMargin(2);
 
-    moGLayout->setSpacing(2);
-    tvGLayout->setSpacing(2);
-    ctGLayout->setSpacing(2);
-    vaGLayout->setSpacing(2);
-    vmGLayout->setSpacing(2);
-    tuiGLayout->setSpacing(2);
+    moGLayout->setSpacing(1);
+    tvGLayout->setSpacing(1);
+    ctGLayout->setSpacing(1);
+    vaGLayout->setSpacing(1);
+    vmGLayout->setSpacing(1);
+    //tuiGLayout->setSpacing(1);
 
 
     moPanelWidget = new QWidget();
@@ -87,12 +87,12 @@ void BrowseWidget::initUi()
     navSLayout->addWidget(tuiPanelWidget);
     navSLayout->setCurrentIndex(5);
     //大类
-    QToolButton *bt0 = new QToolButton;
-    QToolButton *bt1 = new QToolButton;
-    QToolButton *bt2 = new QToolButton;
-    QToolButton *bt3= new QToolButton;
-    QToolButton *bt4 = new QToolButton;
-    QToolButton *bt5 = new QToolButton;
+    QPushButton *bt0 = new QPushButton;
+    QPushButton *bt1 = new QPushButton;
+    QPushButton *bt2 = new QPushButton;
+    QPushButton *bt3= new QPushButton;
+    QPushButton *bt4 = new QPushButton;
+    QPushButton *bt5 = new QPushButton;
 
     bt4->setVisible(false);//暂时无用
 
@@ -141,7 +141,7 @@ void BrowseWidget::initUi()
     QString str="全部#剧情#爱情#喜剧#动作#恐怖#惊悚#犯罪#悬疑#科幻#伦理#战争#动画#文艺#历史#传记#奇幻#古装#歌舞#纪录#家庭#冒险#灾难#武侠#青春#其他";
     QStringList strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *moCatBt = new QToolButton;
+        QPushButton *moCatBt = new QPushButton;
         moCatBt->setCheckable(true);
         moCatBt->setText(str_temp);
         moGLayout->addWidget(moCatBt,row,column,1,1);
@@ -175,7 +175,7 @@ void BrowseWidget::initUi()
     str="全部#美国#大陆#香港#韩国#日本#法国#英国#德国#台湾#泰国#印度#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *moareaBt = new QToolButton;
+        QPushButton *moareaBt = new QPushButton;
         moareaBt->setCheckable(true);
         moareaBt->setText(str_temp);
         moGLayout->addWidget(moareaBt,row,column,1,1);
@@ -209,7 +209,7 @@ void BrowseWidget::initUi()
     str="全部#2014#2013#2012#2011#2010#2009#2008#2007#2006#更早";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *moYearBt = new QToolButton;
+        QPushButton *moYearBt = new QPushButton;
         moYearBt->setCheckable(true);
         moYearBt->setText(str_temp);
         moGLayout->addWidget(moYearBt,row,column,1,1);
@@ -243,7 +243,7 @@ void BrowseWidget::initUi()
     str="最新#最热#好评#推荐";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *moRankBt = new QToolButton;
+        QPushButton *moRankBt = new QPushButton;
         moRankBt->setCheckable(true);
         moRankBt->setText(str_temp);
         moGLayout->addWidget(moRankBt,row,column,1,1);
@@ -277,7 +277,7 @@ void BrowseWidget::initUi()
     str="全部#喜剧#家庭#悬疑#偶像#历史#爱情#警匪#古装#武侠#都市#科幻#励志#谍战#情景#动作#神话#战争#宫廷#农村#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *tvCatBt = new QToolButton;
+        QPushButton *tvCatBt = new QPushButton;
         tvCatBt->setCheckable(true);
         tvCatBt->setText(str_temp);
         tvGLayout->addWidget(tvCatBt,row,column,1,1);
@@ -311,7 +311,7 @@ void BrowseWidget::initUi()
     str="全部#内地#香港#台湾#韩国#泰国#日本#美国#英国#新加坡";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *tvareaBt = new QToolButton;
+        QPushButton *tvareaBt = new QPushButton;
         tvareaBt->setCheckable(true);
         tvareaBt->setText(str_temp);
         tvGLayout->addWidget(tvareaBt,row,column,1,1);
@@ -345,7 +345,7 @@ void BrowseWidget::initUi()
     str="全部#2014#2013#2012#2011#2010#2009#2008#2007#2006#更早";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *tvYearBt = new QToolButton;
+        QPushButton *tvYearBt = new QPushButton;
         tvYearBt->setCheckable(true);
         tvYearBt->setText(str_temp);
         tvGLayout->addWidget(tvYearBt,row,column,1,1);
@@ -379,7 +379,7 @@ void BrowseWidget::initUi()
     str="最新#最热";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *tvRankBt = new QToolButton;
+        QPushButton *tvRankBt = new QPushButton;
         tvRankBt->setCheckable(true);
         tvRankBt->setText(str_temp);
         tvGLayout->addWidget(tvRankBt,row,column,1,1);
@@ -413,7 +413,7 @@ void BrowseWidget::initUi()
     str="全部#热血#恋爱#美少女#青春#搞笑#校园#剧情#冒险#机战#魔幻#励志#益智#童话#亲子#科幻#萝莉#动作#运动#耽美#战争#社会#后宫#悬疑#竞技#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *ctCatBt = new QToolButton;
+        QPushButton *ctCatBt = new QPushButton;
         ctCatBt->setCheckable(true);
         ctCatBt->setText(str_temp);
         ctGLayout->addWidget(ctCatBt,row,column,1,1);
@@ -447,7 +447,7 @@ void BrowseWidget::initUi()
     str="全部#日本#美国#大陆#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *ctareaBt = new QToolButton;
+        QPushButton *ctareaBt = new QPushButton;
         ctareaBt->setCheckable(true);
         ctareaBt->setText(str_temp);
         ctGLayout->addWidget(ctareaBt,row,column,1,1);
@@ -481,7 +481,7 @@ void BrowseWidget::initUi()
     str="全部#2014#2013#2012#2011#2010#2009#2008#2007#2006#2005#2004#2003#2002#更早";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *ctYearBt = new QToolButton;
+        QPushButton *ctYearBt = new QPushButton;
         ctYearBt->setCheckable(true);
         ctYearBt->setText(str_temp);
         ctGLayout->addWidget(ctYearBt,row,column,1,1);
@@ -515,7 +515,7 @@ void BrowseWidget::initUi()
     str="最新#最热";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *ctRankBt = new QToolButton;
+        QPushButton *ctRankBt = new QPushButton;
         ctRankBt->setCheckable(true);
         ctRankBt->setText(str_temp);
         ctGLayout->addWidget(ctRankBt,row,column,1,1);
@@ -548,7 +548,7 @@ void BrowseWidget::initUi()
     str="全部#真人秀#选秀#美食#旅游#访谈#体育#纪实#搞笑#时尚#晚会#音乐#歌舞#游戏#生活#脱口秀#情感#播报#社会#教育#财经#曲艺#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *vaCatBt = new QToolButton;
+        QPushButton *vaCatBt = new QPushButton;
         vaCatBt->setCheckable(true);
         vaCatBt->setText(str_temp);
         vaGLayout->addWidget(vaCatBt,row,column,1,1);
@@ -582,7 +582,7 @@ void BrowseWidget::initUi()
     str="全部#大陆#香港#台湾#韩国#日本#美国#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *vaareaBt = new QToolButton;
+        QPushButton *vaareaBt = new QPushButton;
         vaareaBt->setCheckable(true);
         vaareaBt->setText(str_temp);
         vaGLayout->addWidget(vaareaBt,row,column,1,1);
@@ -615,7 +615,7 @@ void BrowseWidget::initUi()
     str="全部#爱情#搞笑#创意#人生#动画#科幻#家庭#励志#动作#特殊#摄影#剧情#悬疑#MV#明星#纪录片#青春#公益#战争#广告#其他";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *vmCatBt = new QToolButton;
+        QPushButton *vmCatBt = new QPushButton;
         vmCatBt->setCheckable(true);
         vmCatBt->setText(str_temp);
         vmGLayout->addWidget(vmCatBt,row,column,1,1);
@@ -649,7 +649,7 @@ void BrowseWidget::initUi()
     str="全部#2014#2013#2012#2011";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *vmYearBt = new QToolButton;
+        QPushButton *vmYearBt = new QPushButton;
         vmYearBt->setCheckable(true);
         vmYearBt->setText(str_temp);
         vmGLayout->addWidget(vmYearBt,row,column,1,1);
@@ -683,7 +683,7 @@ void BrowseWidget::initUi()
     str="最新#最热";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *vmRankBt = new QToolButton;
+        QPushButton *vmRankBt = new QPushButton;
         vmRankBt->setCheckable(true);
         vmRankBt->setText(str_temp);
         vmGLayout->addWidget(vmRankBt,row,column,1,1);
@@ -717,7 +717,7 @@ void BrowseWidget::initUi()
     str="推荐电影#推荐电视剧#推荐动漫#推荐综艺";
     strList=str.split("#");
     foreach (QString str_temp, strList) {
-        QToolButton *tuiBt = new QToolButton;
+        QPushButton *tuiBt = new QPushButton;
         tuiBt->setCheckable(true);
         tuiBt->setText(str_temp);
         tuiGLayout->addWidget(tuiBt,row,column,1,1);
@@ -738,18 +738,18 @@ void BrowseWidget::initUi()
     }
     QLabel *soLbl = new QLabel("搜索:");
     searchLineEdit =  new QLineEdit;
-    searchBtn = new QToolButton;
+    searchBtn = new QPushButton;
     searchBtn->setText("搜索");
-    tuiGLayout->addWidget(soLbl,row+1,0,1,1);
-    tuiGLayout->addWidget(searchLineEdit,row+2,0,1,2);
-    tuiGLayout->addWidget(searchBtn,row+2,2,1,1);
+    tuiGLayout->addWidget(soLbl,row+1,0,1,4);
+    tuiGLayout->addWidget(searchLineEdit,row+2,0,1,3);
+    tuiGLayout->addWidget(searchBtn,row+2,3,1,1);
     connect(searchBtn,SIGNAL(clicked()),this,SLOT(search()));
     connect(searchLineEdit,SIGNAL(returnPressed()),this,SLOT(search()));
 
     QLabel *adLbl = new QLabel("公告:");
     adShowPanel =  new AdShow;
-    tuiGLayout->addWidget(adLbl,row+3,0,1,2);
-    tuiGLayout->addWidget(adShowPanel,row+4,0,1,5);
+    tuiGLayout->addWidget(adLbl,row+3,0,1,4);
+    tuiGLayout->addWidget(adShowPanel,row+4,0,1,4);
 
 
     //setLayout(mainGLayout);

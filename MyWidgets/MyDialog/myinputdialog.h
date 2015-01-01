@@ -3,7 +3,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
-#include <QToolButton>
+#include <QPushButton>
 #include <QSpacerItem>
 #include <QGridLayout>
 class MyInputDialog : public QWidget
@@ -24,7 +24,7 @@ private:
     QGridLayout *mainLayout;
     QLabel *txtOrImgLbl;
     QLineEdit *inputL;
-    QToolButton *okBtn;
+    QPushButton *okBtn;
     QSpacerItem *spaceItem;
 
 };

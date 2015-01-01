@@ -42,7 +42,7 @@ void FNavgationBar::initData()
 void FNavgationBar::initUI()
 {
     setObjectName(QString("FNavgationBar"));
-    setFixedHeight(66);
+    //setFixedHeight(66);
 }
 
 void FNavgationBar::initConnect()

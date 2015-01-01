@@ -100,7 +100,9 @@ QString DownloadWidget::getRealUrl(QString url)
         QByteArray data0 = reply0->readAll();
         realUrl = data0;
     }
+    //qDebug()<<realUrl;
     return realUrl;
+
 }
 
 void DownloadWidget::readyReadStandardOutput()

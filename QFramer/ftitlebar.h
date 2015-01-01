@@ -24,11 +24,11 @@
 #define FTITLEBAR_H
 
 #include <QFrame>
-#include <QToolButton>
+#include <QPushButton>
 #include <QLabel>
 
 
-#define Title_Height 25
+#define Title_Height 30
 
 class FTitleBar : public QFrame
 {
@@ -42,13 +42,13 @@ private:
     QIcon* normalIcon;
     QIcon* closeIcon;
     QLabel* titleLabel;
-    QToolButton* logoButton;
-    QToolButton* settingButton;
-    QToolButton* skinButton;
-    QToolButton* fixButton;
-    QToolButton* minButton;
-    QToolButton* maxButton;
-    QToolButton* closeButton;
+    QPushButton* logoButton;
+    QPushButton* settingButton;
+    QPushButton* skinButton;
+    QPushButton* fixButton;
+    QPushButton* minButton;
+    QPushButton* maxButton;
+    QPushButton* closeButton;
     bool normal_max_flag;
     bool fixflag;
 
@@ -71,7 +71,7 @@ public:
     void setSettingMenu(QMenu* menu);
 
     void setLogoButton(const char * str, const char *objectName=NULL);
-    QToolButton* getLogoButton();
+    QPushButton* getLogoButton();
     void setLogoButtonVisible(bool visible);
     bool isLogoButtonVisible();
 
@@ -81,32 +81,32 @@ public:
     bool isTitleLabelVisible();
 
     void setSettingButton(const char * str, const char *objectName=NULL);
-    QToolButton* getSettingButton();
+    QPushButton* getSettingButton();
     void setSettingButtonVisible(bool visible);
     bool isSettingButtonVisible();
 
     void setSkinButton(const char * str, const char *objectName=NULL);
-    QToolButton* getSkinButton();
+    QPushButton* getSkinButton();
     void setSkinButtonVisible(bool visible);
     bool isSkinButtonVisible();
 
     void setFixButton(const char * str, const char *objectName=NULL);
-    QToolButton* getFixButton();
+    QPushButton* getFixButton();
     void setFixButtonVisible(bool visible);
     bool isFixButtonVisible();
 
     void setMinButton(const char * str, const char *objectName=NULL);
-    QToolButton* getMinButton();
+    QPushButton* getMinButton();
     void setMinButtonVisible(bool visible);
     bool isMinButtonVisible();
 
     void setMaxButton(const char * str, const char *objectName=NULL);
-    QToolButton* getMaxButton();
+    QPushButton* getMaxButton();
     void setMaxButtonVisible(bool visible);
     bool isMaxButtonVisible();
 
     void setCloseButton(const char * str, const char *objectName=NULL);
-    QToolButton* getCloseButton();
+    QPushButton* getCloseButton();
     void setCloseButtonVisible(bool visible);
     bool isCloseButtonVisible();
 

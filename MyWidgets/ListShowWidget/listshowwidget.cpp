@@ -25,7 +25,7 @@ ListShowWidget::ListShowWidget(QWidget *parent) :
     this->setWidgetResizable(true);
 
     setObjectName("listScroll");
-    setStyleSheet("#listScroll{background: transparent;border:none;border-right:2px solid #00637B}");
+    setStyleSheet("#listScroll{background: transparent;border:none;border-right:1px solid rgba(255,255,255,30)}");
     areaWidget->setStyleSheet("background: transparent;border:none;");
 }
 
@@ -47,8 +47,8 @@ void ListShowWidget::pageMinus()
 
 void ListShowWidget::showPage()
 {
-    preBtn = new QToolButton;
-    nextBtn = new QToolButton;
+    preBtn = new QPushButton;
+    nextBtn = new QPushButton;
     preBtn->setText("上一页");
     nextBtn->setText("下一页");
     int br=areaWidgetLayout->rowCount();

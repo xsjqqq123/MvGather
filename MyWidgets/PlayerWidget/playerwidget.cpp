@@ -155,68 +155,108 @@ void PlayerWidget::getRealHref(QString href)
     }else if(href.contains(rx))
     {
         qDebug()<<"anylise by flvxz.com";
+
+        //得到网页源码
+        QString hrefTemp = href;
+        hrefTemp = QByteArray(hrefTemp.replace("://",":##").toUtf8()).toBase64();
+        QNetworkRequest request(QUrl(QString("http://q1.flvxz.com/getFlv.php?url=%0&_=%1").arg(hrefTemp).arg(QDateTime::currentMSecsSinceEpoch())));
+        request.setRawHeader(QByteArray("referer"), QByteArray("http://flv.cn/"));
+        QEventLoop loop1;
+        QNetworkReply *reply1 = manager->get(request);
+        QObject::connect(reply1,SIGNAL(finished()), &loop1, SLOT(quit()), Qt::DirectConnection);
+        loop1.exec();
+        QString data1 = reply1->readAll();
+        //qDebug()<<data;
+        //从源码中得到链接
+        QRegExp rh("href=\".*\"");
+        QRegExp rx_verify("/verify.*\"");
+        rh.setMinimal(true);
+        rx_verify.setMinimal(true);
+        rh.indexIn(data1);
+        QString url = rh.cap(0);
+        rx_verify.indexIn(url);
+        QString verify = rx_verify.cap(0).replace("\"","");
+
+        url =QString("http://q1.flvxz.com/api/url/%0/jsonp/prettyjson%1").arg(hrefTemp).arg(verify);
+        //qDebug()<<url;
+        QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(url)));
+        QEventLoop loop;
+        QTimer::singleShot(8000,&loop,SLOT(quit()));//
+        QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+        loop.exec();
+        QByteArray data = reply->readAll();
+        //qDebug()<<data;
+
+        QJsonParseError *error=new QJsonParseError;
+        QJsonDocument doc=QJsonDocument::fromJson(data,error);
+
         QSettings settings("MvGather", "xusongjie");
         QString preferQualitysSetting=settings.value("app/preferQualitys", "").toString();
         QStringList preferQualitysList = preferQualitysSetting.split("#");
 
-        QString hrefTemp = href;
-        QNetworkRequest request(QUrl(QString("http://www.flvxz.com/getFlv.php?url=%0").arg(QString(QByteArray(hrefTemp.replace("://",":##").toUtf8()).toBase64()))));
-        request.setRawHeader(QByteArray("referer"), QByteArray("http://www.flvxz.com"));
-        QEventLoop loop;
-        QNetworkReply *reply = manager->get(request);
-        QObject::connect(reply,SIGNAL(finished()), &loop, SLOT(quit()), Qt::DirectConnection);
-        loop.exec();
-        QString data = reply->readAll();
-        //qDebug()<<data;
-
-        QRegExp rx_quality("\\[.*\\]");
-        rx_quality.setMinimal(true);
-
-        QRegExp rx_realUrl("<a rel=\"noreferrer\" href=\".*\"");
-        rx_realUrl.setMinimal(true);
-
-        QStringList htmlFileList = data.split("color:red");
-        htmlFileList.removeFirst();
-        QString quality_temp;
-        QString files;
-
-        foreach (QString preferQuality, preferQualitysList) {
-
-            foreach (QString htmlFile, htmlFileList) {//
-                //qDebug()<<htmlFile<<"\n++++++++++++++++++";
-                rx_quality.indexIn(htmlFile);
-                quality_temp = rx_quality.cap(0).replace(QRegExp("\\[|\\]"),"");
-                //qDebug()<<quality_temp<<"\n++++++++++++++++++";
-                if(quality_temp == preferQuality)
-                {
-                    //qDebug()<<quality_temp;
-                    rx_realUrl.indexIn(htmlFile);
-                    QStringList list = rx_realUrl.capturedTexts();
-                    foreach (QString l, list) {
-                        QString RealUrl = l.replace(QRegExp("<a rel=\"noreferrer\" href=\"|\""),"");
-                        files.append(QString(RealUrl+"#"));
-                        //qDebug()<<l;
-                    }
-
-                    allHrefs = files;
-                    currentSlice =1;
-                    totalSlices = list.count();
-                    playerWin->setTotalSlices(totalSlices);
-                    break;
-                }else
-                {
-                    continue;
-                }
-
-
-            }
-            if(!allHrefs.isEmpty())
+        if(error->error==QJsonParseError::NoError)
+        {
+            if(doc.isArray())
             {
-                break;
+                QJsonArray array=doc.array();
+                bool breakMark = false;
+                QString quality_temp;
+                foreach (QString preferQuality, preferQualitysList) {
+
+                    foreach (QJsonValue v, array) {
+                        QJsonObject serial_obj = v.toObject();
+                        quality_temp =serial_obj["quality"].toString();
+
+                        if(quality_temp == preferQuality)
+                        {
+                            breakMark = true;//得到与设置视频质量相符的地址
+
+                            QJsonArray filesArray =serial_obj["files"].toArray();
+                            QString files;
+                            foreach (QJsonValue file, filesArray) {
+                                QJsonObject file_obj = file.toObject();
+                                files.append(file_obj["furl"].toString().replace("\\","")+"#");
+                            }
+                            allHrefs = files;
+                            currentSlice =1;
+                            totalSlices = filesArray.count();
+                            playerWin->setTotalSlices(totalSlices);
+
+                            break;
+                        }
+                        if(quality_temp == "")//wasu.cn
+                        {
+                            breakMark = true;
+                            QJsonArray filesArray =serial_obj["files"].toArray();
+                            QString files;
+                            foreach (QJsonValue file, filesArray) {
+                                QJsonObject file_obj = file.toObject();
+                                files.append(file_obj["furl"].toString().replace("\\","")+"#");
+                            }
+                            allHrefs = files;
+                            currentSlice =1;
+                            totalSlices = filesArray.count();
+                            playerWin->setTotalSlices(totalSlices);
+
+                            break;
+                        }
+                    }
+                    if(breakMark)
+                    {
+                        break;
+                    }
+                }
+                myTipWin->setText("播放视频。");
+                addMplayListAndPlay(allHrefs,quality_temp);
+
             }
+
+        }else
+        {
+            myTipWin->setBusyIndicatorShow(false);
+            myTipWin->setText("不支持解析!");
         }
-        myTipWin->setText("播放视频。");
-        addMplayListAndPlay(allHrefs,quality_temp);
+
 
     }else
     {
@@ -310,6 +350,7 @@ void PlayerWidget::getRealHref(QString href)
             myTipWin->setText("不支持解析!");
         }
 
+
     }
     if(allHrefs.isEmpty())
     {
@@ -382,6 +423,7 @@ void PlayerWidget::getRealHref(QString href)
         myTipWin->setText("播放视频。");
         addMplayListAndPlay(allHrefs,format);
     }
+    qDebug()<<"所有直链（以#分隔）："<<allHrefs;
     myTipWin->setText("解析结束。");
     delete manager;
     myTipWin->timeToHide(1);
@@ -615,6 +657,9 @@ void PlayerWidget::syncMv()
         if(source=="")
         {
             continue;
+        }else if(source == "letv")
+        {
+            source = "leshi";
         }
         QNetworkAccessManager *manager = new QNetworkAccessManager;
         QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(tvUrl)));
@@ -710,7 +755,7 @@ void PlayerWidget::anyliseData(QByteArray data, QString tvId, QString tvUrl, QSt
         //            mainLayout->addWidget(lb,0,0,2,2);
         //            int column=0;
         //            foreach (QString txt, vlist) {
-        //                btn = new QToolButton;
+        //                btn = new QPushButton;
         //                btnGroup->addButton(btn,column);
         //                btn->setText(txt);
         //                btn->setMinimumSize(100,40);

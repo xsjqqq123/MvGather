@@ -23,10 +23,12 @@ MyTip::MyTip(QWidget *parent) :
 void MyTip::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.save();
     painter.setPen(Qt::NoPen);
     painter.setBrush(QBrush(QColor(10,10,10,200)));
-    painter.drawRect(this->rect());
+    //painter.drawRect(this->rect());
+    painter.drawRoundedRect(this->rect(),5,5);
 
     painter.setPen(Qt::white);
     painter.scale(1.2,1.2);

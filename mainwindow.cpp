@@ -2,13 +2,13 @@
 #include "QFramer/fmainwindow.h"
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QBitmap>
 MainWindow::MainWindow(QWidget *parent)
     : FMainWindow(parent)
 {
     centerWindow = new CenterWindow;
     setCentralWidget(centerWindow);
-
-    getTitleBar()->getTitleLabel()->setText("影视集结号3.1.0");
+    getTitleBar()->getTitleLabel()->setText("影视集结号3.2.0");
     getTitleBar()->getSkinButton()->setVisible(false);
     getTitleBar()->getFixButton()->setVisible(false);
     getTitleBar()->getLogoButton()->setIcon(QIcon(":/images/images/icon.png"));
@@ -46,7 +46,8 @@ void MainWindow::keyPressEvent(QKeyEvent *keyEvent)
     {
         centerWindow->playerWidget->playerWin->setFullScreenMode();
     }
-}/*
+}
+/*
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
@@ -123,6 +124,7 @@ void MainWindow::popupSettingMenu()
         PreferSourceWidgetWin *s = new PreferSourceWidgetWin(0);
         s->show();
     }
+    getTitleBar()->clearChecked();
 }
 
 void MainWindow::toggleStayOnTop()
@@ -149,6 +151,7 @@ void MainWindow::toggleStayOnTop()
         }
     }
     this->show();
+    getTitleBar()->clearChecked();
     return;
 }
 void MainWindow::appColorChange()

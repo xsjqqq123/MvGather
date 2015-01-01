@@ -46,22 +46,22 @@ FTitleBar* FTitleBar::getInstace()
 void FTitleBar::initData()
 {
     title = tr("");
-    logoButton = new QToolButton;
+    logoButton = new QPushButton;
     logoButton->setObjectName(QString("titleToolButton"));
     titleLabel = new QLabel;
-    settingButton = new QToolButton;
+    settingButton = new QPushButton;
     settingButton->setFocusPolicy(Qt::NoFocus);
     settingButton->setObjectName(QString("titleToolButton"));
-    skinButton = new QToolButton;\
+    skinButton = new QPushButton;\
     skinButton->setObjectName(QString("titleToolButton"));
-    fixButton = new QToolButton;
+    fixButton = new QPushButton;
     fixButton->setObjectName(QString("titleToolButton"));
     fixButton->setFocusPolicy(Qt::NoFocus);
-    minButton = new QToolButton;
+    minButton = new QPushButton;
     minButton->setObjectName(QString("titleToolButton"));
-    maxButton = new QToolButton;
+    maxButton = new QPushButton;
     maxButton->setObjectName(QString("titleToolButton"));
-    closeButton = new QToolButton;
+    closeButton = new QPushButton;
     closeButton->setObjectName(QString("titleToolButton"));
 
     logoButton->setFocusPolicy(Qt::NoFocus);
@@ -101,7 +101,7 @@ void FTitleBar::initUI()
     mainlayout->addWidget(minButton);
     mainlayout->addWidget(maxButton);
     mainlayout->addWidget(closeButton);
-    mainlayout->setContentsMargins(0, 0, 5, 0);
+    mainlayout->setContentsMargins(5, 0, 0, 0);
     mainlayout->setSpacing(0);
     setLayout(mainlayout);
 }
@@ -191,7 +191,7 @@ void FTitleBar::setLogoButton(const char *str, const char *objectName)
         logoButton->setObjectName(QString(objectName));
 }
 
-QToolButton* FTitleBar::getLogoButton()
+QPushButton* FTitleBar::getLogoButton()
 {
     return logoButton;
 }
@@ -237,7 +237,7 @@ void FTitleBar::setSettingButton(const char *str, const char *objectName)
 {
 
     settingButton->setIcon(QIcon(QString(str)));
-    settingButton->setIconSize(QSize(height(), height()));
+    settingButton->setIconSize(QSize(height()*0.6, height()*0.6));
     if (objectName)
     {
         settingButton->setObjectName(QString(objectName));
@@ -245,7 +245,7 @@ void FTitleBar::setSettingButton(const char *str, const char *objectName)
 }
 
 
-QToolButton* FTitleBar::getSettingButton()
+QPushButton* FTitleBar::getSettingButton()
 {
     return settingButton;
 }
@@ -273,7 +273,7 @@ void FTitleBar::setSkinButton(const char *str, const char *objectName)
     }
 }
 
-QToolButton* FTitleBar::getSkinButton()
+QPushButton* FTitleBar::getSkinButton()
 {
     return skinButton;
 }
@@ -294,14 +294,14 @@ void FTitleBar::setFixButton(const char *str, const char *objectName)
 {
 
     fixButton->setIcon(QIcon(QString(str)));
-    fixButton->setIconSize(QSize(height(), height()));
+    fixButton->setIconSize(QSize(height()*0.6, height()*0.6));
     if(objectName)
     {
         fixButton->setObjectName(QString(objectName));
     }
 }
 
-QToolButton* FTitleBar::getFixButton()
+QPushButton* FTitleBar::getFixButton()
 {
     return fixButton;
 }
@@ -320,7 +320,7 @@ bool FTitleBar::isFixButtonVisible()
 void FTitleBar::setMinButton(const char *str, const char *objectName)
 {
     minButton->setIcon(QIcon(QString(str)));
-    minButton->setIconSize(QSize(height(), height()));
+    minButton->setIconSize(QSize(height()*0.6, height()*0.6));
     if (objectName)
     {
         minButton->setObjectName(QString(objectName));
@@ -328,7 +328,7 @@ void FTitleBar::setMinButton(const char *str, const char *objectName)
     }
 }
 
-QToolButton* FTitleBar::getMinButton()
+QPushButton* FTitleBar::getMinButton()
 {
     return minButton;
 }
@@ -358,7 +358,7 @@ void FTitleBar::setMaxButton(const char *str, const char *objectName)
 }
 
 
-QToolButton* FTitleBar::getMaxButton()
+QPushButton* FTitleBar::getMaxButton()
 {
     return maxButton;
 }
@@ -387,7 +387,7 @@ void FTitleBar::setCloseButton(const char *str, const char *objectName)
     }
 }
 
-QToolButton* FTitleBar::getCloseButton()
+QPushButton* FTitleBar::getCloseButton()
 {
     return closeButton;
 }

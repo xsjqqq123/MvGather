@@ -70,21 +70,21 @@
        </widget>
       </item>
       <item row="0" column="5">
-       <widget class="QToolButton" name="searchBtn">
+       <widget class="QPushButton" name="searchBtn">
         <property name="styleSheet">
-         <string notr="true">QToolButton{
+         <string notr="true">QPushButton{
    background-color: rgba(0, 82, 112, 100);
     color: white;
     border: 1px;
 }
 
-QToolButton:hover{
+QPushButton:hover{
     background-color: rgba(0, 82, 112, 200);
     color: white;
     border: 1px;
 }
 
-QToolButton:disabled{
+QPushButton:disabled{
     background-color: transparent;
     color: gray;
 }</string>
@@ -128,21 +128,21 @@ QToolButton:disabled{
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QToolButton" name="loginBtn">
+       <widget class="QPushButton" name="loginBtn">
         <property name="styleSheet">
-         <string notr="true">QToolButton{
+         <string notr="true">QPushButton{
    background-color: rgba(0, 82, 112, 100);
     color: white;
     border: 1px;
 }
 
-QToolButton:hover{
+QPushButton:hover{
     background-color: rgba(0, 82, 112, 200);
     color: white;
     border: 1px;
 }
 
-QToolButton:disabled{
+QPushButton:disabled{
     background-color: transparent;
     color: gray;
 }</string>
@@ -187,106 +187,6 @@ QToolButton:disabled{
       <item row="2" column="0" colspan="5">
        <widget class="QListWidget" name="downloadMagnetlistWidget"/>
       </item>
-      <item row="0" column="0">
-       <widget class="QToolButton" name="newMagnet">
-        <property name="styleSheet">
-         <string notr="true">QToolButton{
-   background-color: rgba(0, 82, 112, 100);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:hover{
-    background-color: rgba(0, 82, 112, 200);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:disabled{
-    background-color: transparent;
-    color: gray;
-}</string>
-        </property>
-        <property name="text">
-         <string>新建磁力链任务</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QToolButton" name="clearTaskBtn">
-        <property name="styleSheet">
-         <string notr="true">QToolButton{
-   background-color: rgba(0, 82, 112, 100);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:hover{
-    background-color: rgba(0, 82, 112, 200);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:disabled{
-    background-color: transparent;
-    color: gray;
-}</string>
-        </property>
-        <property name="text">
-         <string>清空</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QToolButton" name="refreshTaskBtn">
-        <property name="styleSheet">
-         <string notr="true">QToolButton{
-   background-color: rgba(0, 82, 112, 100);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:hover{
-    background-color: rgba(0, 82, 112, 200);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:disabled{
-    background-color: transparent;
-    color: gray;
-}</string>
-        </property>
-        <property name="text">
-         <string>刷新</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QToolButton" name="newUrlTaskBtn">
-        <property name="styleSheet">
-         <string notr="true">QToolButton{
-   background-color: rgba(0, 82, 112, 100);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:hover{
-    background-color: rgba(0, 82, 112, 200);
-    color: white;
-    border: 1px;
-}
-
-QToolButton:disabled{
-    background-color: transparent;
-    color: gray;
-}</string>
-        </property>
-        <property name="text">
-         <string>普通链接任务</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1" colspan="2">
        <spacer name="horizontalSpacer_4">
         <property name="orientation">
@@ -299,6 +199,106 @@ QToolButton:disabled{
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="newMagnet">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>新建磁力链任务</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="newUrlTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>普通链接任务</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QPushButton" name="clearTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>清空</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QPushButton" name="refreshTaskBtn">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+   background-color: rgba(0, 82, 112, 100);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:hover{
+    background-color: rgba(0, 82, 112, 200);
+    color: white;
+    border: 1px;
+}
+
+QPushButton:disabled{
+    background-color: transparent;
+    color: gray;
+}</string>
+        </property>
+        <property name="text">
+         <string>刷新</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -336,21 +336,21 @@ QToolButton:disabled{
        </spacer>
       </item>
       <item row="0" column="2">
-       <widget class="QToolButton" name="deleteFiles">
+       <widget class="QPushButton" name="deleteFiles">
         <property name="styleSheet">
-         <string notr="true">QToolButton{
+         <string notr="true">QPushButton{
    background-color: rgba(0, 82, 112, 100);
     color: white;
     border: 1px;
 }
 
-QToolButton:hover{
+QPushButton:hover{
     background-color: rgba(0, 82, 112, 200);
     color: white;
     border: 1px;
 }
 
-QToolButton:disabled{
+QPushButton:disabled{
     background-color: transparent;
     color: gray;
 }</string>
@@ -361,21 +361,21 @@ QToolButton:disabled{
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QToolButton" name="refreshFilesList">
+       <widget class="QPushButton" name="refreshFilesList">
         <property name="styleSheet">
-         <string notr="true">QToolButton{
+         <string notr="true">QPushButton{
    background-color: rgba(0, 82, 112, 100);
     color: white;
     border: 1px;
 }
 
-QToolButton:hover{
+QPushButton:hover{
     background-color: rgba(0, 82, 112, 200);
     color: white;
     border: 1px;
 }
 
-QToolButton:disabled{
+QPushButton:disabled{
     background-color: transparent;
     color: gray;
 }</string>

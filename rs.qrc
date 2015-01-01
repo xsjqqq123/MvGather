@@ -29,10 +29,15 @@
         <file>skin/icons/dark/appbar.lock.png</file>
         <file>skin/icons/dark/appbar.minus.png</file>
         <file>skin/icons/dark/appbar.page.delete.png</file>
-        <file>skin/icons/dark/appbar.cabinet.in.png</file>
-        <file>skin/icons/dark/appbar.debug.step.into.png</file>
-        <file>skin/icons/dark/appbar.link.png</file>
-        <file>skin/icons/dark/appbar.monitor.play.png</file>
-        <file>skin/icons/dark/appbar.share.open.png</file>
+        <file>skin/icons/dark/appbar.download.png</file>
+        <file>skin/icons/dark/appbar.list.png</file>
+        <file>skin/icons/dark/appbar.player.png</file>
+        <file>skin/icons/dark/appbar.share.png</file>
+        <file>skin/icons/dark/appbar.magnet.png</file>
+        <file>skin/icons/dark/appbar.download.dark.png</file>
+        <file>skin/icons/dark/appbar.list.dark.png</file>
+        <file>skin/icons/dark/appbar.magnet.dark.png</file>
+        <file>skin/icons/dark/appbar.player.dark.png</file>
+        <file>skin/icons/dark/appbar.share.dark.png</file>
     </qresource>
 </RCC>

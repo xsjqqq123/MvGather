@@ -3,8 +3,8 @@
 #include <QDebug>
 #include <QWidget>
 #include <QGridLayout>
-#include <QToolButton>
-#include <QToolButton>
+#include <QPushButton>
+#include <QPushButton>
 #include <QButtonGroup>
 #include <QStackedLayout>
 #include "../ListShowWidget/listshowwidget.h"
@@ -80,7 +80,7 @@ private:
     QButtonGroup *tuiGroup;//推荐按钮分组
 
     QLineEdit *searchLineEdit;//搜索
-    QToolButton *searchBtn;
+    QPushButton *searchBtn;
 
     AdShow *adShowPanel;
     MyTip myTipWin;

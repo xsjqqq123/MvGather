@@ -42,7 +42,7 @@ void MagnetWidget::getMp4baMagnetList()
     myTipWin.setText("正在加载");
     QEventLoop loop;
     int row = 0;
-    for(int i = 1;i<4;i++)
+    for(int i = 1;i<2;i++)
     {
         QNetworkReply *reply = searchManager->get(QNetworkRequest(QUrl(QString("http://www.mp4ba.com/index.php?page=%0").arg(i))));
         QTimer::singleShot(5000,&loop,SLOT(quit()));
@@ -76,7 +76,7 @@ void MagnetWidget::getMp4baMagnetList()
 //            QString size = rx_size.cap(0).replace(QRegExp("<td>|</td>"),"");
 //            pos += rx.matchedLength();
             QTableWidgetItem * item0 = new QTableWidgetItem(name);
-            QTableWidgetItem * item1 = new QTableWidgetItem("高清MP4吧");
+            QTableWidgetItem * item1 = new QTableWidgetItem("来自高清MP4吧");
             QTableWidgetItem * item2 = new QTableWidgetItem(QString("magnet:?xt=urn:btih:%0&tr=http://bt.mp4ba.com:2710/announce").arg(hash));
             row++;
             ui->magnetSearchTbWidget->setRowCount(row);
@@ -105,7 +105,8 @@ void MagnetWidget::getMagnetList(QString keyWord)
     myTipWin.setBusyIndicatorShow(true);
     myTipWin.setText("正在搜索");
     ui->magnetSearchTbWidget->clearContents();
-    ui->magnetSearchTbWidget->setRowCount(0);
+    ui->magnetSearchTbWidget->setRowCount(0);/*
+    //bt.shousibaocai.com
     QEventLoop loop;
     int rowCount = 0;
     for(int i = 1;i<4;i++)
@@ -140,6 +141,53 @@ void MagnetWidget::getMagnetList(QString keyWord)
             title = rx_title.cap(0).remove(rx_remove);
             rx_detail.indexIn(file);
             detail = rx_detail.cap(0).remove(rx_remove);
+            rx_magnet.indexIn(file);
+            magnet = rx_magnet.cap(0).remove(QRegExp("\""));
+            QTableWidgetItem *itemTitle = new QTableWidgetItem(title);
+            QTableWidgetItem *itemDetail = new QTableWidgetItem(detail);
+            QTableWidgetItem *itemMagnet = new QTableWidgetItem(magnet);
+            ui->magnetSearchTbWidget->setItem(rowCount,0,itemTitle);
+            ui->magnetSearchTbWidget->setItem(rowCount,1,itemDetail);
+            ui->magnetSearchTbWidget->setItem(rowCount,2,itemMagnet);
+            rowCount+=1;
+        }
+    }*/
+    //http://www.btbook.net/
+    QEventLoop loop;
+    int rowCount = 0;
+    for(int i = 1;i<4;i++)
+    {
+        QNetworkReply *reply = searchManager->get(QNetworkRequest(QUrl(QString("http://www.btbook.net/search/%0/%1").arg(keyWord).arg(i))));
+        QObject::connect(reply,SIGNAL(finished()), &loop, SLOT(quit()), Qt::DirectConnection);
+        loop.exec();
+        QString data = reply->readAll();
+
+
+        QStringList filesList = data.split("search-item");
+        if(!filesList.isEmpty())
+        {
+            filesList.removeFirst();
+        }
+
+        QRegExp rx_title("<p>.*<span>");
+        QRegExp rx_detail("<span>.*</span>");
+        QRegExp rx_magnet("magnet.*\"");
+        QRegExp rx_remove("<.*>");
+        QRegExp rx_remove2(" ");
+        rx_title.setMinimal(true);
+        rx_detail.setMinimal(true);
+        rx_magnet.setMinimal(true);
+        rx_remove.setMinimal(true);
+        rx_remove2.setMinimal(true);
+        foreach (QString file, filesList) {
+            ui->magnetSearchTbWidget->setRowCount(rowCount+1);
+            QString title;
+            QString detail("文件大小：");
+            QString magnet;
+            rx_title.indexIn(file);
+            title = rx_title.cap(0).remove(rx_remove);
+            rx_detail.indexIn(file);
+            detail += rx_detail.cap(0).remove(rx_remove);
             rx_magnet.indexIn(file);
             magnet = rx_magnet.cap(0).remove(QRegExp("\""));
             QTableWidgetItem *itemTitle = new QTableWidgetItem(title);

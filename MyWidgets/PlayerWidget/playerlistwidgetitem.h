@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "../imgbtn.h"
 #include <QGridLayout>
-#include <QToolButton>
+#include <QPushButton>
 #include <QButtonGroup>
 #include <QHBoxLayout>
 class PlayerListWidgetItem : public QWidget
@@ -28,7 +28,7 @@ private:
     QHBoxLayout *hLayout;
     QString tvId;
     ImgBtn *deleteBtn;
-    QToolButton *serialBtn;
+    QPushButton *serialBtn;
     QButtonGroup *serialBtnGroup;
     int row;
     int column;

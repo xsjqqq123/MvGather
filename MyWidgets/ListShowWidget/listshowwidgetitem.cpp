@@ -12,7 +12,7 @@ ListShowWidgetItem::ListShowWidgetItem(QWidget *parent, QString tvUrl, QString i
     ImgLbl = new ImageLabel(this,imgUrl,timeToDelay);
     connect(ImgLbl,SIGNAL(clicked()),this,SLOT(SendClicked()));
     titleLbl = new QLabel(title,this);
-    descripeLbl = new QLabel("<font color=#333333>"+descripe+"</font>",this);//"<font color=#CCCCCC>"+descripe+"</font>"
+    descripeLbl = new QLabel("<font color=#9D9D9D>"+descripe+"</font>",this);//"<font color=#CCCCCC>"+descripe+"</font>"
     titleLbl->setToolTip(title);
     descripeLbl->setToolTip(descripe);
     //descripeLbl->setStyleSheet("");

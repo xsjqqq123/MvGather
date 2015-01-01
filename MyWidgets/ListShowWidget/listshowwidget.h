@@ -5,7 +5,7 @@
 #include "listshowwidgetitem.h"
 #include <QScrollArea>
 #include <QGridLayout>
-#include <QToolButton>
+#include <QPushButton>
 #include <QTimer>
 class ListShowWidget : public QScrollArea
 {
@@ -28,8 +28,8 @@ private:
     QGridLayout *areaWidgetLayout;//areaWidget中组织item的layout
     ListShowWidgetItem *Item;
     QWidget *areaWidget;
-    QToolButton *nextBtn;//下一页
-    QToolButton *preBtn;//上一页
+    QPushButton *nextBtn;//下一页
+    QPushButton *preBtn;//上一页
     QTimer *checkSeeImgTimer;
 };
 

@@ -9,14 +9,16 @@ ProgressBar::ProgressBar(QWidget *parent) :
     QWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setMaximumHeight(5);
+    setMaximumHeight(4);
     posPercent=0;
     timeText ="Waited...";
     isMouseIn =false;
     progressBarHeight = 1;
+    indicateLinePoint = QPoint(0,0);
     timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(setSmallHeight()));
     timer->setInterval(2000);
+    setMouseTracking(true);
 }
 
 ProgressBar::~ProgressBar()
@@ -24,7 +26,7 @@ ProgressBar::~ProgressBar()
 
 }
 
-void ProgressBar::paintEvent(QPaintEvent *)
+void ProgressBar::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     QPen pen;
@@ -34,7 +36,7 @@ void ProgressBar::paintEvent(QPaintEvent *)
     painter.setPen(pen);
     painter.drawRect(this->rect());
 
-    pen.setWidth(progressBarHeight);
+    pen.setWidth(4);
     pen.setColor(Qt::darkGray);
     painter.setPen(pen);
     painter.drawLine(QPoint(5,6),QPoint(this->width()-5,6));
@@ -43,11 +45,10 @@ void ProgressBar::paintEvent(QPaintEvent *)
     painter.setPen(pen);
     painter.drawLine(QPoint(5,6),QPoint((this->width()-10)*posPercent+5,6));
 
-//    pen.setWidth(1);
-//    pen.setColor(Qt::white);
-//    painter.setPen(pen);
-//    painter.setBrush(QColor(58,153,228));
-//    painter.drawEllipse(QPoint((this->width()-10)*posPercent+5,5),3,3);
+    pen.setColor(Qt::blue);
+    pen.setWidth(1);
+    painter.setPen(pen);
+    painter.drawLine(indicateLinePoint.x(),3,indicateLinePoint.x(),this->height());
 
     pen.setColor(Qt::white);
     painter.setPen(pen);
@@ -64,6 +65,12 @@ void ProgressBar::mouseReleaseEvent(QMouseEvent *)
         posPercent=(a/b);
         emit posChange(posPercent);
     }
+    repaint();
+}
+
+void ProgressBar::mouseMoveEvent(QMouseEvent *e)
+{
+    indicateLinePoint = e->pos();
     repaint();
 }
 
@@ -115,7 +122,7 @@ void ProgressBar::setSmallHeight()
     if(!isMouseIn)
     {
         progressBarHeight=1;
-        setMaximumHeight(5);
+        setMaximumHeight(4);
     }
 
 }

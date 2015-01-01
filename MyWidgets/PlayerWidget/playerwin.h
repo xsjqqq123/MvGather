@@ -42,6 +42,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *);
     void resizeEvent(QResizeEvent *event);
+    void mouseMoveEvent(QMouseEvent *e);
     //void keyReleaseEvent(QKeyEvent *e);
 signals:
     void hideToFullScreen(bool FullScreen);
@@ -84,6 +85,7 @@ private:
 
     bool isWideModel;
     QTimer *updateProgressBarT;
+    QTimer *setContralBarViewT;//检查鼠标位置，进入区域时，显示下方进度条
     int EndOfMediaMark;//标记,播放到98%，解析下一片视频并切换播放器.1表示已经发出信号，0表示没有。
     QGridLayout *mainGLayout;
 

@@ -48,8 +48,8 @@ void FCenterWindow::initData()
 void FCenterWindow::initUI()
 {
     setObjectName(QString("FCenterWindow"));
-    navagationBar = new FNavgationBar();
-    stackWidget = new QStackedWidget();
+    navagationBar = new FNavgationBar;
+    stackWidget = new QStackedWidget;
 
     navlayout = new QBoxLayout(QBoxLayout::TopToBottom);
     navlayout->addWidget(navagationBar);
@@ -170,11 +170,11 @@ void FCenterWindow::switchscreen(const int index)
     }
     else if(index > stackWidget->currentIndex())
     {
-        n = 2;
+        n = 0;
     }
     else if (index < stackWidget->currentIndex())
     {
-        n = 6;
+        n = 4;
     }
 
     stackWidget->setCurrentIndex(index);
@@ -184,37 +184,37 @@ void FCenterWindow::switchscreen(const int index)
 //    qsrand(time.msec()+time.second()*1000);
 //    int n = qrand()%9;
 //    n = 0;
-    switch (n) {
-    case 0:
-        cloudAntimation(animationTop);
-        break;
-    case 1:
-        cloudAntimation(animationTopRight);
-        break;
-    case 2:
-        cloudAntimation(animationRight);
-        break;
-    case 3:
-        cloudAntimation(animationBottomRight);
-        break;
-    case 4:
-        cloudAntimation(animationBottom);
-        break;
-    case 5:
-        cloudAntimation(animationBottomLeft);
-        break;
-    case 6:
-        cloudAntimation(animationLeft);
-        break;
-    case 7:
-        cloudAntimation(animationTopLeft);
-        break;
-    case 8:
-        cloudAntimation(animationCenter);
-        break;
-    default:
-        break;
-    }
+//    switch (n) {
+//    case 0:
+//        cloudAntimation(animationTop);
+//        break;
+//    case 1:
+//        cloudAntimation(animationTopRight);
+//        break;
+//    case 2:
+//        cloudAntimation(animationRight);
+//        break;
+//    case 3:
+//        cloudAntimation(animationBottomRight);
+//        break;
+//    case 4:
+//        cloudAntimation(animationBottom);
+//        break;
+//    case 5:
+//        cloudAntimation(animationBottomLeft);
+//        break;
+//    case 6:
+//        cloudAntimation(animationLeft);
+//        break;
+//    case 7:
+//        cloudAntimation(animationTopLeft);
+//        break;
+//    case 8:
+//        cloudAntimation(animationCenter);
+//        break;
+//    default:
+//        break;
+//    }
     preindex = index;
 
 }
@@ -246,9 +246,9 @@ void FCenterWindow::cloudAntimation(animation_Direction direction)
     animation->setDuration(500);
     animation->setStartValue(circle->geometry());
 
-    QPropertyAnimation* animation_line = new QPropertyAnimation(line, "size");
-    animation_line->setDuration(500);
-    animation_line->setEasingCurve(QEasingCurve::OutQuart);
+//    QPropertyAnimation* animation_line = new QPropertyAnimation(line, "size");
+//    animation_line->setDuration(500);
+//    animation_line->setEasingCurve(QEasingCurve::OutQuart);
 
     switch (direction) {
     case animationTop:
@@ -260,8 +260,8 @@ void FCenterWindow::cloudAntimation(animation_Direction direction)
     case animationRight:
         line->move(0, stackWidget->y() - 2);
         animation->setEndValue(QRect(circle->width() + 3, 0, 0, circle->height()));
-        animation_line->setStartValue(QSize(0, 2));
-        animation_line->setEndValue(QSize(stackWidget->width(), 2));
+//        animation_line->setStartValue(QSize(0, 2));
+//        animation_line->setEndValue(QSize(stackWidget->width(), 2));
         break;
     case animationBottomRight:
         animation->setEndValue(QRect(circle->width(), circle->height(), 0, 0));
@@ -275,8 +275,8 @@ void FCenterWindow::cloudAntimation(animation_Direction direction)
     case animationLeft:
         animation->setEndValue(QRect(-3, 0, 0, circle->height()));
         line->move(stackWidget->x(), stackWidget->y() - 2);
-        animation_line->setStartValue(QSize(0, 2));
-        animation_line->setEndValue(QSize(stackWidget->width(), 2));
+//        animation_line->setStartValue(QSize(0, 2));
+//        animation_line->setEndValue(QSize(stackWidget->width(), 2));
         break;
     case animationTopLeft:
         animation->setEndValue(QRect(0, 0, 0, 0));
@@ -303,9 +303,9 @@ void FCenterWindow::cloudAntimation(animation_Direction direction)
     connect(group,SIGNAL(finished()), group, SLOT(deleteLater()));
     connect(group,SIGNAL(finished()), animation, SLOT(deleteLater()));
     connect(group,SIGNAL(finished()), animation_opacity, SLOT(deleteLater()));
-    connect(group,SIGNAL(finished()), animation_line, SLOT(deleteLater()));
+//    connect(group,SIGNAL(finished()), animation_line, SLOT(deleteLater()));
     group->addAnimation(animation);
     group->addAnimation(animation_opacity);
-    group->addAnimation(animation_line);
+//    group->addAnimation(animation_line);
     group->start();
 }

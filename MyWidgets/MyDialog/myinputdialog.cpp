@@ -5,7 +5,7 @@ MyInputDialog::MyInputDialog(QWidget *parent) :
 {
     txtOrImgLbl = new QLabel;
     inputL = new QLineEdit;
-    okBtn = new QToolButton;
+    okBtn = new QPushButton;
     okBtn->setText("确定");
     spaceItem = new QSpacerItem(60,25);
     mainLayout = new QGridLayout(this);

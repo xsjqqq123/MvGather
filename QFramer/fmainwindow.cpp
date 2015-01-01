@@ -61,7 +61,7 @@ void FMainWindow::initUI()
     //setWindowTitle("QFramer");
 
     pstatusbar = new QStatusBar;
-    pstatusbar->setFixedHeight(25);
+    pstatusbar->setFixedHeight(15);
     setStatusBar(pstatusbar);
     trayicon = new QSystemTrayIcon(QIcon(QString(":/images/images/icon.png")), this);
     trayicon->setObjectName(QString("trayicon"));

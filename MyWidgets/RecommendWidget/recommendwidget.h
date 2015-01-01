@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "../ListShowWidget/listshowwidget.h"
 #include <QGridLayout>
-#include <QToolButton>
+#include <QPushButton>
 #include <QLineEdit>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -33,8 +33,8 @@ private:
     QNetworkAccessManager *manager;
     QGridLayout *mainGLayout;
     ListShowWidget *listShowWidget;
-    QToolButton *dyRecommendBtn;
-    QToolButton *searchBtn;
+    QPushButton *dyRecommendBtn;
+    QPushButton *searchBtn;
     QLineEdit *searchLineEdit;
     QString hostName;
     MyTip myTipWin;

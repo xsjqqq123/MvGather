@@ -105,12 +105,12 @@ void LoginForm::on_lineEdit_editingFinished()
     }
 }
 
-void LoginForm::on_toolButton_clicked()
+void LoginForm::on_pushButton_clicked()
 {
     myTipWin.show();
     myTipWin.setBusyIndicatorShow(true);
     myTipWin.setText("正在登录");
-    ui->toolButton->setEnabled(false);
+    ui->pushButton->setEnabled(false);
     QEventLoop loop;
     QByteArray postData;
     postData.append("staticpage=http://www.baidu.com/cache/user/html/v3Jump.html&");
@@ -185,6 +185,5 @@ void LoginForm::on_toolButton_clicked()
     }
     myTipWin.timeToHide(2);
 
-    ui->toolButton->setEnabled(true);
-
+    ui->pushButton->setEnabled(true);
 }

@@ -75,7 +75,7 @@ void PlayerListArea::updateList()
         if(source.contains("qiyi"))
         {
             source = "爱奇艺";
-        }else if(source.contains("leshi"))
+        }else if(source.contains("letv"))
         {
             source = "乐视";
         }else if(source.contains("tudou"))//

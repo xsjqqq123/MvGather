@@ -35,8 +35,7 @@ public slots:
     QString getToken();
 private slots:
     void on_lineEdit_editingFinished();
-
-    void on_toolButton_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::LoginForm *ui;

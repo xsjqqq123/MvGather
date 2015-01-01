@@ -42,13 +42,14 @@ PlayerListWidgetItem::PlayerListWidgetItem(QWidget *parent, QString tvId, QStrin
 void PlayerListWidgetItem::addSerial(QString tvNo, QString historyNo)
 {
 
-    serialBtn = new QToolButton;
+    serialBtn = new QPushButton;
     //serialBtn->setFlat(true);
     serialBtn->setMaximumWidth(36);
     serialBtn->setMinimumWidth(34);
     serialBtn->setText(tvNo);
     serialBtn->resize(50,30);
     serialBtn->setCheckable(true);
+    serialBtn->setFocusPolicy(Qt::NoFocus);
     if(historyNo==tvNo)
     {
         serialBtn->setChecked(true);

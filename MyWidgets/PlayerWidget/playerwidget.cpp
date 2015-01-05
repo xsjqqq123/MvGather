@@ -152,7 +152,7 @@ void PlayerWidget::getRealHref(QString href)
         myTipWin->setText("播放视频。");
         addMplayListAndPlay(allHrefs,"高清");
 
-    }else if(href.contains(rx))
+    }else
     {
         qDebug()<<"anylise by flvxz.com";
 
@@ -166,9 +166,9 @@ void PlayerWidget::getRealHref(QString href)
         QObject::connect(reply1,SIGNAL(finished()), &loop1, SLOT(quit()), Qt::DirectConnection);
         loop1.exec();
         QString data1 = reply1->readAll();
-        //qDebug()<<data;
+        //qDebug()<<data1;
         //从源码中得到链接
-        QRegExp rh("href=\".*\"");
+        QRegExp rh("q1.flvxz.com.*\"");
         QRegExp rx_verify("/verify.*\"");
         rh.setMinimal(true);
         rx_verify.setMinimal(true);
@@ -203,11 +203,16 @@ void PlayerWidget::getRealHref(QString href)
                 QString quality_temp;
                 foreach (QString preferQuality, preferQualitysList) {
 
+                    if(preferQuality.length()<5)
+                    {
+                        continue;
+                    }
                     foreach (QJsonValue v, array) {
                         QJsonObject serial_obj = v.toObject();
                         quality_temp =serial_obj["quality"].toString();
 
-                        if(quality_temp == preferQuality)
+//                        qDebug()<<preferQuality<<quality_temp;
+                        if(quality_temp.contains(preferQuality))
                         {
                             breakMark = true;//得到与设置视频质量相符的地址
 
@@ -258,7 +263,8 @@ void PlayerWidget::getRealHref(QString href)
         }
 
 
-    }else
+    }
+    if(allHrefs.isEmpty())
     {
         qDebug()<<"anylise by api.flvxz.com";
         int tokenCount = flvxzTokens.split("#").count();
@@ -296,11 +302,16 @@ void PlayerWidget::getRealHref(QString href)
                 QString quality_temp;
                 foreach (QString preferQuality, preferQualitysList) {
 
+                    if(preferQuality.length()<5)
+                    {
+                        continue;
+                    }
                     foreach (QJsonValue v, array) {
                         QJsonObject serial_obj = v.toObject();
                         quality_temp =serial_obj["quality"].toString();
 
-                        if(quality_temp == preferQuality)
+                        //qDebug()<<preferQuality<<quality_temp;
+                        if(quality_temp.contains(preferQuality))
                         {
                             breakMark = true;//得到与设置视频质量相符的地址
 
@@ -488,22 +499,36 @@ void PlayerWidget::Player2Ready(int sliceIndex)
         myTipWin->setBusyIndicatorShow(true);
         myTipWin->setText("正在解析爱奇艺");
 
+        qDebug()<<"anylise by flvxz.com";
+
+        //得到网页源码
+
+        QString hrefTemp = playingHref;
+        hrefTemp = QByteArray(hrefTemp.replace("://",":##").toUtf8()).toBase64();
+        QNetworkRequest request(QUrl(QString("http://q1.flvxz.com/getFlv.php?url=%0&_=%1").arg(hrefTemp).arg(QDateTime::currentMSecsSinceEpoch())));
+        request.setRawHeader(QByteArray("referer"), QByteArray("http://flv.cn/"));
+        QEventLoop loop1;
         QNetworkAccessManager *manager = new QNetworkAccessManager;
-        int tokenCount = flvxzTokens.split("#").count();
-        int n = 0;
-        if(tokenCount>1)
-        {
-            n = qrand()%(tokenCount-1);
-        }
-        //qDebug()<<tokenCount<<n<<flvxzTokens.split("#").value(n,"75ea44a540257938ea5683d3318643d8");
-        QString token = flvxzTokens.split("#").value(n,"75ea44a540257938ea5683d3318643d8");
-        QString playingHref_temp = playingHref;
-        //qDebug()<<playingHref;
-        QString url =QString("http://api.flvxz.com/token/%0/url/%1/jsonp/prettyjson/quality/%2").arg(token).arg(QString(QByteArray(playingHref_temp.replace("://",":##").toUtf8()).toBase64())).arg(QString(quality.toUtf8().toBase64()));
+        QNetworkReply *reply1 = manager->get(request);
+        QObject::connect(reply1,SIGNAL(finished()), &loop1, SLOT(quit()), Qt::DirectConnection);
+        loop1.exec();
+        QString data1 = reply1->readAll();
+        //qDebug()<<data;
+        //从源码中得到链接
+        QRegExp rh("href=\".*\"");
+        QRegExp rx_verify("/verify.*\"");
+        rh.setMinimal(true);
+        rx_verify.setMinimal(true);
+        rh.indexIn(data1);
+        QString url = rh.cap(0);
+        rx_verify.indexIn(url);
+        QString verify = rx_verify.cap(0).replace("\"","");
+
+        url =QString("http://q1.flvxz.com/api/url/%0/jsonp/prettyjson%1").arg(hrefTemp).arg(verify);
         //qDebug()<<url;
         QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(url)));
         QEventLoop loop;
-        QTimer::singleShot(10000,&loop,SLOT(quit()));
+        QTimer::singleShot(8000,&loop,SLOT(quit()));//
         QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
         QByteArray data = reply->readAll();

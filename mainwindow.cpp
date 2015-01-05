@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     centerWindow = new CenterWindow;
     setCentralWidget(centerWindow);
-    getTitleBar()->getTitleLabel()->setText("影视集结号3.2.0");
+    getTitleBar()->getTitleLabel()->setText("影视集结号3.2.1");
     getTitleBar()->getSkinButton()->setVisible(false);
     getTitleBar()->getFixButton()->setVisible(false);
     getTitleBar()->getLogoButton()->setIcon(QIcon(":/images/images/icon.png"));

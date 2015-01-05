@@ -21,7 +21,7 @@
 CenterWindow::CenterWindow(QWidget *parent) :
     FCenterWindow(parent)
 {
-    this->version = "3.2.0";
+    this->version = "3.2.1";
     QDir dir;
     QDir dir2(dir.homePath()+"/视频");
     QDir dir3(dir.homePath()+"/Videos");
